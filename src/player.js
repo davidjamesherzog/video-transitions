@@ -7,7 +7,7 @@ export default class Player {
     return this._video;
   }
 
-  initialize({id = '', config = {}, autoplay = true}) {
+  initialize({id = '', overlays = [], autoplay = true}) {
     if (videojs.getPlayers()[id]) {
       delete videojs.getPlayers()[id];
     }
@@ -18,18 +18,9 @@ export default class Player {
     });
 
     // add overlays
-    if (config.overlays) {
-      this._video.overlay({
-        overlays: config.overlays
-      });
-    } else {
-      if (config.overlays) {
-        this._video.overlay({
-          overlays: []
-        });
-      }
-    }
-    
+    this._video.overlay({
+      overlays
+    });
   }
 
   load(url) {

@@ -13,6 +13,22 @@ const setTime = () => {
   $('time').innerHTML = `${startTime} seconds`;
 };
 
+// switch players when users selects either video B or video C
+const switchPlayers = (id, currentPlayer, newPlayer) => {
+  beginTime = new Date();
+  currentPlayer.reset();
+  if (multiple) {
+    $('videojs-player').classList.add('hide');
+    $(`videojs-player-${id}`).classList.remove('hide');
+    newPlayer.play();
+  } else {
+    currentPlayer.initialize({
+      id: 'videojs-player'
+    });
+    currentPlayer.load($(id).value);
+  }
+};
+
 // Initialize main player.  
 //
 // If `multiple` is selected, then initialize all players but wait till after main 
@@ -32,13 +48,11 @@ const initializePlayers = () => {
     end: 'loadstart'
   }];
   
-  const player = new Player();
   // load main player
+  const player = new Player();
   player.initialize({
     id: 'videojs-player',
-    config: {
-      overlays
-    }
+    overlays
   });
   beginTime = new Date();
   player.load(videoA.value);
@@ -52,8 +66,7 @@ const initializePlayers = () => {
       // load player option 1
       playerVideoB.initialize({
         id: 'videojs-player-videoB',
-        autoplay: false,
-        config: {}
+        autoplay: false
       });
       playerVideoB.load($('videoB').value);
       playerVideoB.addOneListener('playing', setTime);
@@ -61,8 +74,7 @@ const initializePlayers = () => {
       // load player option 2
       playerVideoC.initialize({
         id: 'videojs-player-videoC',
-        autoplay: false,
-        config: {}
+        autoplay: false
       });
       playerVideoC.load($('videoC').value);
       playerVideoC.addOneListener('playing', setTime);
@@ -79,36 +91,9 @@ const initializePlayers = () => {
   
   // overlays - videos B & C after video completes
   const videoBOverlay = $('videoBOverlay');
+  videoBOverlay.addEventListener('click', () => switchPlayers('videoB', player, playerVideoB));
   const videoCOverlay = $('videoCOverlay');
-  videoBOverlay.addEventListener('click', () => {
-    beginTime = new Date();
-    player.reset();
-    if (multiple) {
-      $('videojs-player').classList.add('hide');
-      $('videojs-player-videoB').classList.remove('hide');
-      playerVideoB.play();
-    } else {
-      player.initialize({
-        id: 'videojs-player'
-      });
-      player.load($('videoB').value);
-    }
-    
-  });
-  videoCOverlay.addEventListener('click', () => {
-    beginTime = new Date();
-    player.reset();
-    if (multiple) {
-      $('videojs-player').classList.add('hide');
-      $('videojs-player-videoC').classList.remove('hide');
-      playerVideoC.play();
-    } else {
-      player.initialize({
-        id: 'videojs-player'
-      });
-      player.load($('videoC').value);
-    }
-  });
+  videoCOverlay.addEventListener('click', () => switchPlayers('videoC', player, playerVideoC));
 };
 
 // Re-initialize the players when play button pressed
