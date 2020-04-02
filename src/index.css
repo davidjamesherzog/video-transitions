@@ -1,0 +1,63 @@
+h3 {
+  margin-bottom: 0;
+}
+
+.input {
+  max-width: 750px;
+  width: 100%;
+  margin-right: 5px;
+}
+
+.button {
+  box-shadow: 0 1px 6px rgba(57,73,76,.25);
+  color: #fff;
+  background-color: #359900;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.42857;
+  padding: 10px 25px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.container {
+  max-width: 750px;
+}
+
+.player {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.video-js .button {
+  border: 2px solid white;
+  background-color: #008CBA;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.video-js .vjs-overlay-top {
+  max-width: 100%;
+}
+
+.video-js.hide {
+  z-index: -1;
+}
+
+.video-js.position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-right: 5px;
+}

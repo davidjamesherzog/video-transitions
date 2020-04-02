@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Demo</title>
+  <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet">
+  <link href="node_modules/videojs-overlay/dist/videojs-overlay.css" rel="stylesheet">
+  <link href="src/index.css" rel="stylesheet">
+</head>
+<body>
+  <div>
+    <h3>Video A</h3>
+    <input id="videoA" type="text" value="https://d252srr1zuysk4.cloudfront.net/clients/4/86/hls/polarbear-j82g.m3u8" class="input"></input>
+  </div>
+  <div>
+    <h3>Video B</h3>
+    <input id="videoB" type="text" value="https://d252srr1zuysk4.cloudfront.net/clients/4/86/hls/seal-cglm.m3u8" class="input"></input>
+  </div>
+  <div>
+    <h3>Video C</h3>
+    <input id="videoC" type="text" value="https://d252srr1zuysk4.cloudfront.net/clients/4/86/hls/walrus-ymlg.m3u8" class="input"></input>
+  </div>
+  <div>
+    <h3>Players</h3>
+    <input type="radio" id="multiple" name="players" value="multiple"
+           checked>
+    <label for="multiple">Multiple</label>
+    <input type="radio" id="single" name="players" value="single">
+    <label for="single">Single</label>
+  </div>
+  <div>
+    <button id="play" class="button">Play</button>
+  </div>
+  <div>
+    <h3>Time to first play</h3>
+    <span id="time"></span>
+  </div>
+
+  <br/>
+
+  <div class="container">
+    <div class="player">
+      <video id="videojs-player" class="video-js vjs-default-skin position" controls>
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a
+          web browser that
+          <a href="https://videojs.com/html5-video-support/" target="_blank">
+            supports HTML5 video
+          </a>
+        </p>
+      </video>
+      <video id="videojs-player-videoB" class="video-js vjs-default-skin hide position" controls></video>
+      <video id="videojs-player-videoC" class="video-js vjs-default-skin hide position" controls></video>
+    </div>
+  </div>
+  
+  
+  <div id="endedOverlay">
+    <button id="videoBOverlay" class="button">Video B</button>
+    <button id="videoCOverlay" class="button">Video C</button>
+  </div>
+  <script src="node_modules/video.js/dist/video.js"></script>
+  <script src="node_modules/videojs-overlay/dist/videojs-overlay.js"></script>
+  <script type="module" src="src/index.js"></script>
+</body>
+</html>
